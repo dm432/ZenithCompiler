@@ -22,9 +22,13 @@ tasks.test {
 }
 
 tasks.withType<KotlinCompile> {
-    kotlinOptions.jvmTarget = "1.8"
+    kotlinOptions.jvmTarget = "17"
+}
+
+tasks.named<JavaExec>("run") {
+    standardInput = System.`in`
 }
 
 application {
-    mainClass.set("MainKt")
+    mainClass.set("com.danielmaile.zenith.MainKt")
 }

@@ -1,6 +1,6 @@
-package parser
+package com.danielmaile.zenith.parser
 
-import lexer.Token
+import com.danielmaile.zenith.lexer.Token
 
 class Parser(private val tokens: List<Token>) {
     private var currentIndex = 0

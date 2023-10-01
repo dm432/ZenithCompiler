@@ -1,16 +1,16 @@
-package evaluator
+package com.danielmaile.zenith.evaluator
 
-import lexer.Token
-import parser.BinaryExpression
-import parser.BooleanBinaryExpression
-import parser.BooleanLiteral
-import parser.BooleanUnaryExpression
-import parser.Expression
-import parser.ExpressionStatement
-import parser.NumberExpression
-import parser.Statement
-import parser.VariableAccess
-import parser.VariableDeclaration
+import com.danielmaile.zenith.lexer.Token
+import com.danielmaile.zenith.parser.BinaryExpression
+import com.danielmaile.zenith.parser.BooleanBinaryExpression
+import com.danielmaile.zenith.parser.BooleanLiteral
+import com.danielmaile.zenith.parser.BooleanUnaryExpression
+import com.danielmaile.zenith.parser.Expression
+import com.danielmaile.zenith.parser.ExpressionStatement
+import com.danielmaile.zenith.parser.NumberExpression
+import com.danielmaile.zenith.parser.Statement
+import com.danielmaile.zenith.parser.VariableAccess
+import com.danielmaile.zenith.parser.VariableDeclaration
 
 class Evaluator {
 

@@ -1,4 +1,4 @@
-package lexer
+package com.danielmaile.zenith.lexer
 
 class Lexer(private val input: String) {
     fun lex(): List<Token> {

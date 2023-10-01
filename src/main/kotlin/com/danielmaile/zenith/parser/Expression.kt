@@ -1,6 +1,6 @@
-package parser
+package com.danielmaile.zenith.parser
 
-import lexer.Token
+import com.danielmaile.zenith.lexer.Token
 
 sealed class Expression
 data class NumberExpression(val value: Double) : Expression()

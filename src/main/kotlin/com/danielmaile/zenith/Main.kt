@@ -1,16 +1,18 @@
-import evaluator.Evaluator
-import lexer.Lexer
-import parser.BinaryExpression
-import parser.BooleanBinaryExpression
-import parser.BooleanLiteral
-import parser.BooleanUnaryExpression
-import parser.Expression
-import parser.ExpressionStatement
-import parser.NumberExpression
-import parser.Parser
-import parser.Statement
-import parser.VariableAccess
-import parser.VariableDeclaration
+package com.danielmaile.zenith
+
+import com.danielmaile.zenith.evaluator.Evaluator
+import com.danielmaile.zenith.lexer.Lexer
+import com.danielmaile.zenith.parser.BinaryExpression
+import com.danielmaile.zenith.parser.BooleanBinaryExpression
+import com.danielmaile.zenith.parser.BooleanLiteral
+import com.danielmaile.zenith.parser.BooleanUnaryExpression
+import com.danielmaile.zenith.parser.Expression
+import com.danielmaile.zenith.parser.ExpressionStatement
+import com.danielmaile.zenith.parser.NumberExpression
+import com.danielmaile.zenith.parser.Parser
+import com.danielmaile.zenith.parser.Statement
+import com.danielmaile.zenith.parser.VariableAccess
+import com.danielmaile.zenith.parser.VariableDeclaration
 
 fun main() {
     var debug = false

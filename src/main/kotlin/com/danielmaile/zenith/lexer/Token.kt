@@ -1,4 +1,4 @@
-package lexer
+package com.danielmaile.zenith.lexer
 
 sealed class Token {
     data class Number(val value: Double) : Token()
