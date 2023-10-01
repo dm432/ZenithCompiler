@@ -32,4 +32,24 @@ sealed class Token {
     }
 
     data class Identifier(val name: String) : Token()
+
+    data object True : Token() {
+        override fun toString() = "true"
+    }
+
+    data object False : Token() {
+        override fun toString() = "false"
+    }
+
+    data object And : Token() {
+        override fun toString() = "&&"
+    }
+
+    data object Or : Token() {
+        override fun toString() = "||"
+    }
+
+    data object Not : Token() {
+        override fun toString() = "!"
+    }
 }

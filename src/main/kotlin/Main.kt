@@ -1,6 +1,9 @@
 import evaluator.Evaluator
 import lexer.Lexer
 import parser.BinaryExpression
+import parser.BooleanBinaryExpression
+import parser.BooleanLiteral
+import parser.BooleanUnaryExpression
 import parser.Expression
 import parser.ExpressionStatement
 import parser.NumberExpression
@@ -81,6 +84,10 @@ fun printExpressionTree(expression: Expression, prefix: String = "", isTail: Boo
             builder.append(expression.value)
             builder.append("\n")
         }
+        is BooleanLiteral -> {
+            builder.append(expression.value)
+            builder.append("\n")
+        }
         is BinaryExpression -> {
             builder.append(expression.op)
             builder.append("\n")
@@ -88,6 +95,21 @@ fun printExpressionTree(expression: Expression, prefix: String = "", isTail: Boo
             val childPrefix = prefix + (if (isTail) "    " else "│   ")
             builder.append(printExpressionTree(expression.left, childPrefix, false))
             builder.append(printExpressionTree(expression.right, childPrefix, true))
+        }
+        is BooleanBinaryExpression -> {
+            builder.append(expression.op)
+            builder.append("\n")
+
+            val childPrefix = prefix + (if (isTail) "    " else "│   ")
+            builder.append(printExpressionTree(expression.left, childPrefix, false))
+            builder.append(printExpressionTree(expression.right, childPrefix, true))
+        }
+        is BooleanUnaryExpression -> {
+            builder.append(expression.op)
+            builder.append("\n")
+
+            val childPrefix = prefix + (if (isTail) "    " else "│   ")
+            builder.append(printExpressionTree(expression.expression, childPrefix, true))
         }
         is VariableAccess -> {
             builder.append(expression.name)

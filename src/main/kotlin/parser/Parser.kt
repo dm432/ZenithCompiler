@@ -34,6 +34,7 @@ class Parser(private val tokens: List<Token>) {
 
     private fun parseFactor(): Expression {
         return when (val token = peek()) {
+            Token.True, Token.False -> parseBooleanLiteral()
             is Token.Number -> parseNumber()
             Token.OpenParenthesis -> parseParentheses()
             is Token.Identifier -> {
@@ -45,7 +46,7 @@ class Parser(private val tokens: List<Token>) {
     }
 
     private fun parseTerm(): Expression {
-        var left = parseFactor()
+        var left = parseNotExpression()
         while (peek() == Token.Multiply || peek() == Token.Divide) {
             val op = peek()!!
             advance()
@@ -57,13 +58,34 @@ class Parser(private val tokens: List<Token>) {
 
     private fun parseExpression(): Expression {
         var left = parseTerm()
-        while (peek() == Token.Plus || peek() == Token.Minus) {
-            val op = peek()!!
-            advance()
-            val right = parseTerm()
-            left = BinaryExpression(left, op, right)
+        while (true) {
+            left = when (peek()) {
+                Token.Plus, Token.Minus -> {
+                    val op = peek()!!
+                    advance()
+                    val right = parseTerm()
+                    BinaryExpression(left, op, right)
+                }
+
+                Token.And, Token.Or -> {
+                    val op = peek()!!
+                    advance()
+                    val right = parseTerm()
+                    BooleanBinaryExpression(left, op, right)
+                }
+
+                else -> return left
+            }
         }
-        return left
+    }
+
+    private fun parseNotExpression(): Expression {
+        if (peek() == Token.Not) {
+            advance()
+            val expression = parseFactor()
+            return BooleanUnaryExpression(Token.Not, expression)
+        }
+        return parseFactor()
     }
 
     private fun parseVariableDeclarationOrAssignment(): Statement {
@@ -89,6 +111,20 @@ class Parser(private val tokens: List<Token>) {
             parseVariableDeclarationOrAssignment()
         } else {
             ExpressionStatement(parseExpression())
+        }
+    }
+
+    private fun parseBooleanLiteral(): Expression {
+        return when (val token = peek()) {
+            Token.True -> {
+                advance()
+                BooleanLiteral(true)
+            }
+            Token.False -> {
+                advance()
+                BooleanLiteral(false)
+            }
+            else -> throw IllegalArgumentException("Expected a boolean literal, but found $token")
         }
     }
 

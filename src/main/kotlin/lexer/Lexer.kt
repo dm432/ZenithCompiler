@@ -66,6 +66,31 @@ class Lexer(private val input: String) {
                     currentIndex++
                 }
 
+                currentChar == '!' -> {
+                    tokens.add(Token.Not)
+                    currentIndex++
+                }
+
+                input.startsWith("true", currentIndex) -> {
+                    tokens.add(Token.True)
+                    currentIndex += 4
+                }
+
+                input.startsWith("false", currentIndex) -> {
+                    tokens.add(Token.False)
+                    currentIndex += 5
+                }
+
+                input.startsWith("&&", currentIndex) -> {
+                    tokens.add(Token.And)
+                    currentIndex += 2
+                }
+
+                input.startsWith("||", currentIndex) -> {
+                    tokens.add(Token.Or)
+                    currentIndex += 2
+                }
+
                 currentChar.isLetter() -> {
                     val startIndex = currentIndex
                     while (currentIndex < input.length && input[currentIndex].isLetterOrDigit()) {
