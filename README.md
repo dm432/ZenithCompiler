@@ -7,7 +7,7 @@ ZenithCompiler is an evolving compiler project, currently functioning as a basic
 ## ✨ Current Features
 - Interpretation of mathematical expressions (e.g. `(2 * 4) / (2.6 - 1)`)
 - Support for variable assignments (e.g. `a = 10; coolVar = true`)
-- Interpretation of boolean expressions (e.g. `!false && (false || coolBar)`)
+- Interpretation of boolean expressions (e.g. `!false && (false || coolVar)`)
 
 ## 🛠 Planned Features
 - Control structures (e.g., loops, conditionals) 🔁
